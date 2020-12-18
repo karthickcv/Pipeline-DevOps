@@ -1,23 +1,23 @@
-pipeline{
+
+pipeline { 
+
+  agent any
+
+    stages {
+
+      stage('Build') {
  
-    agent any
- 
-    stages{
+                when {
 
-       stage('Build') {
- 
-              when {
+                      changeset glob: "*.js"
 
-                    changeRequest()
+                     }
 
-                   }
+                steps  {
+  
+                      echo "Hello World !!! changeset glob:"
 
-             steps {
-
-                   echo "Hello world changing request"
-                  
-                  }
-
-             }
-        }
-   }
+                     }
+              }
+       }
+}
