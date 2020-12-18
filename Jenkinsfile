@@ -8,7 +8,7 @@ pipeline{
 
               when {
 
-                   changeRequest title: "when-pr"
+                   changeRequest title:"when-pr"
 
                    }
 
