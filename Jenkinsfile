@@ -8,7 +8,7 @@ pipeline {
  
                 when {
 
-                      changeset"**/*.js"
+                      changeset"**/*.js" , casesensitive: true
 
                      }
 
