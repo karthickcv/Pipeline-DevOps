@@ -1,20 +1,23 @@
-pipeline {
-
- agent any
-
-   stages {
-
-      stage('Build') {
-
-          when {
-               changelog '.*some_text*.'
-               }
-          steps {
-               echo "Hello World Changelog"
-                }
-         }
-       }
-     }
+pipeline{
  
+    agent any
  
-  
+    stages{
+
+       stage('Build') {
+ 
+              when {
+
+                    changeRequest()
+
+                   }
+
+             steps {
+
+                   echo "Hello world changing request"
+                  
+                  }
+
+             }
+        }
+   }
