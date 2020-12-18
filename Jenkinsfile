@@ -8,13 +8,13 @@ pipeline{
 
               when {
 
-                   changeRequest title:"when-pr"
+                      changeRequest title:"when-pr"
 
                    }
 
              steps {
 
-                   echo "Hello world changing request"
+                   echo "Hello world !!! changing request"
 
                   }
 
