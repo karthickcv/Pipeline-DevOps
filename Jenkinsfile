@@ -1,4 +1,3 @@
-
 pipeline { 
 
   agent any
@@ -13,6 +12,7 @@ pipeline {
 
                      }
 
+
                 steps  {
   
                       echo "Hello World !!! changeset glob:"
@@ -21,3 +21,5 @@ pipeline {
               }
        }
 }
+
+ 
