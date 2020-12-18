@@ -8,7 +8,7 @@ pipeline {
  
                 when {
 
-                      changeset"WORLD.js" , casesensitive: true 
+                      changeset"*WORLD.js" , casesensitive: true 
 
                      }
 
