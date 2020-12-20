@@ -1,25 +1,20 @@
-pipeline { 
-
-  agent any
-
+pipeline{
+    agent none
+    environment {
+        DEPLOY_TO='dev'
+    }
     stages {
-
-      stage('Build') {
- 
-                when {
-
-                      changeset"*WORLD.js" , caseSensitive: true 
-
-                     }
-
-
-                steps  {
-  
-                      echo "Hello World !!! changeset glob:"
-
-                     }
-              }
-       }
+        stage('Build') {
+            agent {
+                label "Slave 1"
+            }
+            when {
+                beforeAgent false
+                environment name: 'DEPLOY_TO' , value: 'production'
+            }
+            steps {
+                echo "Building....."
+            }
+        }
+    }
 }
-
- 
