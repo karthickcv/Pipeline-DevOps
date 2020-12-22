@@ -1,0 +1,38 @@
+pipeline {
+    agent any 
+
+    stages {
+
+        stage('Build') {
+            input {
+                message "Please Specify Environment" 
+                ok "OK"
+                submitter "user1,user1@localhost.com" 
+                submitterParameter "whoIsSubmitter"
+
+            parameters {
+                
+                string(name: 'environment', defaultValue: 'Dev', description: 'Environment build for (Valid Value: Dev,Test and Prod)')
+                string(name: 'version', defaultValue: '1.0', description: 'Version number to build for')
+                booleanParam(name: 'to_deploy_to_environment', defaultValue: true, description: '')
+                choice(name: 'region', description: 'What aws region ?', choices: 'US-EAST-2\nUS-WEST-2')
+                text(name: 'myText', defaultValue: 'myTextValue', description: 'myText'  )
+                password(name: 'myPassword', defaultValue: 'myPasswordValue', description: 'myDescription'  )
+                file(name: 'myfile', description: 'filedescription')
+                credentials(name: 'mycredentials', description: 'myCredentialsDesc', required: true)
+                      }  
+
+            }
+
+            steps {
+
+                echo "We are building for ${environment} ,${version} and we are deploying to environment: ${to_deploy_to_environment}"
+                echo "region: ${region}, myText: ${myText}, myPassword: ${myPassword} and file: ${myfile}"
+                echo "submitter is: ${whoIsSubmitter}"
+                echo "selected credentials is: ${myCredentials}"
+
+                } 
+
+            }
+        }
+    }

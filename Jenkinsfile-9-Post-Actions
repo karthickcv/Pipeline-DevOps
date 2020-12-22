@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    stages {
+
+         stage('build') {
+
+             steps {
+
+                 echo "Building"
+                 script {
+                 //  currentBuild.result = 'UNSTABLE'
+                 //currentBuild.result = 'UNSTABLE'
+                   currentBuild.result = 'ABORTED'
+                  }
+                 
+
+
+             }
+         }
+    }
+
+    post {
+        always {
+            echo "always: Iam Always gets Executed"
+        }
+
+        success{
+            echo "success: I will be executed if this job gets sucessful"
+        }
+
+        failure {
+            echo "failure: I will be executed if this job gets fail"
+        }
+
+        changed {
+            echo "changed: I will be executed if this job get changes from previous build"
+        }
+         
+        fixed {
+            echo "fixed: I will be executed if this job recovered from unstable status to successfull status"
+        }
+
+        unstable {
+            echo "unstable: I will be executed if this job gets unstable status"
+        }
+         
+        regression {
+            echo "regression: I will be executed if this job gets failure from previous successful build status"
+        }
+
+        aborted {
+            echo "aborted: I will be executed if this job get aborted"
+        }
+
+        cleanup {
+            echo "cleanup: I will be executed if all post conditions gets executed"
+        }
+    }
+}
