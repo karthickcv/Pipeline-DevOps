@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    triggers {
+        upstream(upstreamProjects: 'Pipeline-triggers-upstream-job1,Pipeline-triggers-upstream-job2',
+        threshold: hudson.model.Result.SUCCESS) //SUCCESS, ABORTED, NOT_BUILT, UNSTABLE
+
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Pipeline-triggers-upstream executed"
+            }
+        }
+    }
+}

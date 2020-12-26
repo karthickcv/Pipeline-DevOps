@@ -1,0 +1,30 @@
+pipeline {
+    agent {
+        label 'Slave 1'
+    }
+    stages {
+        stage('Build'){
+                agent {
+                    docker {
+                        image 'maven:3.6.2-jdk-8-slim'
+                        label 'Slave 2'
+                    }
+                }
+                steps {
+                        sh 'mvn -v'
+                }
+            }
+            stage('Deploy') {
+                agent {
+                    docker {
+                        image 'maven:3.6.2-jdk-8-slim'
+                        reuseNode true
+                    }
+                }
+                steps {
+                    sh 'mvn -v'
+                }
+                }
+            }
+        }
+    

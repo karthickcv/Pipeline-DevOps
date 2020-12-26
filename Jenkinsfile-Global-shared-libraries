@@ -1,0 +1,15 @@
+@Library('Practice Repo') _
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                script{
+                    swissknife.printName 'Hello Hutson !!!'
+                }
+            }
+
+        }
+    }
+}

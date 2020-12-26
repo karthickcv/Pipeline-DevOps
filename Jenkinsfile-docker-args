@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.6.2-jdk-8-slim'
+            args '-e someEnv=dev'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'echo $someEnv'
+            }
+        }
+    }
+}

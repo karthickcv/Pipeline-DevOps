@@ -1,0 +1,32 @@
+pipeline {
+    agent {
+        docker {
+            image 'ubuntu:latest'
+        }
+    }
+
+    triggers{
+        //Minute, hours, day of month, month, day of week,(0 and 7 are sunday)
+          cron ('0 1 2 3 1-7')
+        //cron ('H */2 1-3 1,3 2-4')
+        //@yearly, @annually, @monthly, @weekly, @daily, @midnight, @hourly
+        //cron ('@daily')
+        //cron ('T2-Europe/London\n0 1 * * 1-7')
+    }
+    options {
+        newContainerPerStage()
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Hello Ubuntu from Build"
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Hello ubuntu from Deploy"
+            }
+        }
+    }
+    }

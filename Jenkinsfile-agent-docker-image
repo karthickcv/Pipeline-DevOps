@@ -1,0 +1,14 @@
+pipeline {
+    agent {
+        docker {
+            images 'maven:3.6.2-jdk-8-slim'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                 sh 'mvn -v'
+            }
+        }
+    }
+}

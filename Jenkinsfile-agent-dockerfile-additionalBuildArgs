@@ -1,0 +1,26 @@
+pipeline {
+    agent none
+    stages {
+        stage('checkout'){
+            agent any
+            steps {
+                checkout([$class: 'GitSCM',
+                branches: [[name: "origin/master"]],
+                userRemoteConfigs: [[
+                    url: 'https://github.com/karthickcv/Practice-Repo.git'
+                ]]])
+            }
+        }
+
+        stage('dockerfile-add-build-args'){
+            agent {
+                dockerfile {
+                    additionalBuildArgs '--tag mydockerfile:example'
+                }
+            }
+            steps {
+                sh 'cat /etc/lsb-release'
+            }
+        }
+    }
+}

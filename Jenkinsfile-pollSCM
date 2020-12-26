@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM ('* * * * *')
+    }
+    stages {
+        stage('Build') {
+
+        checkout({$class: 'GitSCM',
+        branches:[{name: 'origin/master'}],
+        userRemoteConfigs:[{url: 'https://github.com/karthickcv/Practice-Repo.git'}]})
+        
+        }
+    }
+}
